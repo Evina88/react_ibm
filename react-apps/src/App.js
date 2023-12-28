@@ -5,7 +5,7 @@ const App = (props) => {
 	//define the state and the setter
 	const [APIlist, setAPIlist] = useState();
 
-	//On load invoke method to generate list
+	//On load invoke method to genrate list
 	useEffect(() => {
 		let url = "https://api.publicapis.org/entries?category=Animals";
 		axios({
@@ -19,14 +19,20 @@ const App = (props) => {
 				let i = 1;
 				let entryDetails = listOfEntriesAsArray.map((entryDetail) => {
 					return (
-						<li key={i++}>
-							<a
-								href={entryDetail[1]["Link"]}
-								target="_blank"
-								rel="noreferrer">
-								{entryDetail[1]["API"]}
-							</a>
-						</li>
+						<tr key={i++}>
+							<td
+								key={i++}
+								style={{ color: "red", border: "1px solid black" }}>
+								{" "}
+								{entryDetail[1]["API"]}{" "}
+							</td>
+							<td
+								key={i++}
+								style={{ color: "red", border: "1px solid black" }}>
+								{" "}
+								{entryDetail[1]["Link"]}{" "}
+							</td>
+						</tr>
 					);
 				});
 				setAPIlist(entryDetails);
@@ -39,11 +45,11 @@ const App = (props) => {
 	const colorStyle = { color: props["color"], fontSize: props["size"] };
 
 	return (
-		<div>
+		<div style={colorStyle}>
 			<h2>APIs List</h2>
 			<br />
 
-			<div style={colorStyle}>
+			<div>
 				<ul>{APIlist}</ul>
 			</div>
 		</div>
